@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Angel Dudiel Herrera — Systems Engineer · Space-Tech & AI Researcher</title>
+<meta name="description" content="Angel Adrian Dudiel Herrera — Systems Engineer and Space Technology Applications Researcher working across satellite operations, software, and AI." />
+<meta property="og:title" content="Angel Dudiel Herrera — Systems Engineer · Space-Tech & AI" />
+<meta property="og:description" content="Satellite operations, software, and machine learning." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg:#0A0D15; --bg-elev:#10141F; --bg-panel:#131826;
+    --ink:#ECEAE3; --muted:#8A93A6; --faint:#5A6378;
+    --amber:#F5A623; --amber-soft:#FFC062; --cyan:#5BD1C0;
+    --line:rgba(255,255,255,0.075); --line-strong:rgba(255,255,255,0.14);
+    --r:14px; --maxw:1140px;
+    --display:'Space Grotesk','Noto Sans SC',sans-serif;
+    --body:'Inter','Noto Sans SC',sans-serif;
+    --mono:'JetBrains Mono','Noto Sans SC',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:450;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;
+    background:
+      radial-gradient(900px 500px at 78% -5%, rgba(245,166,35,0.10), transparent 60%),
+      radial-gradient(700px 600px at 10% 110%, rgba(91,209,192,0.06), transparent 60%),
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 64px 64px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 64px 64px;
+    -webkit-mask-image:radial-gradient(120% 120% at 50% 0%, #000 40%, transparent 95%);
+    mask-image:radial-gradient(120% 120% at 50% 0%, #000 40%, transparent 95%);
+    pointer-events:none;z-index:0}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px;position:relative;z-index:1}
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:var(--mono);font-weight:500;letter-spacing:.04em}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--amber);opacity:.6}
+
+  /* NAV */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:1px solid transparent;transition:.35s ease}
+  header.scrolled{background:rgba(10,13,21,0.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:70px;gap:18px}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:600;letter-spacing:.01em}
+  .sigil{width:34px;height:34px;border:1px solid var(--line-strong);border-radius:9px;display:grid;place-items:center;color:var(--amber);flex:none}
+  .sigil svg{width:20px;height:20px}
+  .nav-right{display:flex;align-items:center;gap:26px}
+  .navlinks{display:flex;align-items:center;gap:26px}
+  .navlinks a{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--muted);transition:color .2s;position:relative;padding:4px 0}
+  .navlinks a:hover{color:var(--ink)}
+  .navlinks a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:0;background:var(--amber);transition:width .25s}
+  .navlinks a:hover::after{width:100%}
+  .langs{display:flex;align-items:center;gap:2px;border:1px solid var(--line-strong);border-radius:8px;padding:3px;flex:none}
+  .lang-btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.03em;color:var(--muted);background:none;border:none;cursor:pointer;padding:5px 9px;border-radius:5px;transition:.18s}
+  .lang-btn:hover{color:var(--ink)}
+  .lang-btn.active{background:var(--amber);color:#1a1206}
+  .menu-btn{display:none;background:none;border:1px solid var(--line-strong);border-radius:8px;color:var(--ink);padding:8px 10px;cursor:pointer;font-size:1rem}
+
+  /* HERO */
+  .hero{position:relative;padding:148px 0 84px;min-height:100vh;display:flex;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:54px;align-items:center;width:100%}
+  .hello{font-family:var(--mono);color:var(--cyan);font-size:.84rem;letter-spacing:.08em;margin-bottom:22px}
+  h1{font-family:var(--display);font-weight:600;line-height:1.02;letter-spacing:-.02em;font-size:clamp(2.7rem,6vw,4.6rem);margin-bottom:10px}
+  h1 .accent{color:var(--amber)}
+  .role{font-family:var(--display);font-weight:500;color:var(--muted);font-size:clamp(1.02rem,2.2vw,1.45rem);letter-spacing:-.01em;margin-bottom:26px;line-height:1.3}
+  .lede{max-width:50ch;color:var(--muted);font-size:1.04rem;margin-bottom:32px}
+  .lede b{color:var(--ink);font-weight:600}
+  .cta-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:.82rem;letter-spacing:.04em;padding:13px 22px;border-radius:10px;border:1px solid var(--line-strong);transition:.22s ease;cursor:pointer}
+  .btn.primary{background:var(--amber);color:#1a1206;border-color:var(--amber);font-weight:500}
+  .btn.primary:hover{background:var(--amber-soft);transform:translateY(-2px)}
+  .btn.ghost:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px)}
+  .socials{display:flex;gap:12px;margin-top:30px}
+  .socials a{width:42px;height:42px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:.22s}
+  .socials a:hover{color:var(--amber);border-color:var(--amber);transform:translateY(-2px)}
+  .socials svg{width:18px;height:18px}
+
+  .panel{background:linear-gradient(180deg,var(--bg-panel),var(--bg-elev));border:1px solid var(--line);border-radius:18px;padding:22px;position:relative;overflow:hidden}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .panel-head .ttl{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--faint);text-transform:uppercase}
+  .live{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;color:var(--cyan)}
+  .live .dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(91,209,192,.5)}70%{box-shadow:0 0 0 8px rgba(91,209,192,0)}100%{box-shadow:0 0 0 0 rgba(91,209,192,0)}}
+  @media (prefers-reduced-motion:reduce){.live .dot{animation:none}}
+  .orbit-vis{position:relative;height:172px;display:grid;place-items:center;margin-bottom:18px}
+  .orbit-vis svg{width:100%;height:100%}
+  .sat-path{animation:spin 18s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.sat-path{animation:none}}
+  .sat-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border-radius:10px;overflow:hidden}
+  .sat-row{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--bg-elev);padding:11px 14px;font-family:var(--mono);font-size:.74rem}
+  .sat-row .name{color:var(--ink);letter-spacing:.02em}
+  .sat-row .sub{color:var(--faint);font-size:.68rem}
+  .badge{font-size:.6rem;letter-spacing:.1em;padding:3px 8px;border-radius:5px;border:1px solid var(--line-strong);color:var(--muted)}
+  .tag-eo{color:var(--cyan)} .tag-com{color:var(--amber)}
+
+  /* SECTIONS */
+  section{position:relative;padding:92px 0}
+  .sec-head{margin-bottom:46px;max-width:64ch}
+  .sec-head h2{font-family:var(--display);font-weight:600;letter-spacing:-.02em;font-size:clamp(1.8rem,4vw,2.6rem);margin-top:16px;line-height:1.1}
+  .sec-head p{color:var(--muted);margin-top:14px;font-size:1.02rem}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:300px 1fr;gap:50px;align-items:start}
+  .photo-card{position:sticky;top:100px}
+  .avatar{width:100%;aspect-ratio:1;border-radius:18px;border:1px solid var(--line-strong);background:radial-gradient(120% 120% at 30% 20%,#1b2334,#0d1119);display:grid;place-items:center;position:relative;overflow:hidden}
+  .avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3}
+  .avatar .mono-init{font-family:var(--display);font-weight:600;font-size:5rem;color:var(--amber);opacity:.92;z-index:2}
+  .avatar::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49%,var(--line) 50%,transparent 51%) 0 0/40px 40px,linear-gradient(0deg,transparent 49%,var(--line) 50%,transparent 51%) 0 0/40px 40px;opacity:.5;z-index:1}
+  .id-block{margin-top:16px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .id-row{display:flex;justify-content:space-between;gap:10px;padding:11px 14px;font-family:var(--mono);font-size:.72rem;border-bottom:1px solid var(--line)}
+  .id-row:last-child{border-bottom:none}
+  .id-row .k{color:var(--faint)} .id-row .v{color:var(--ink);text-align:right}
+  .about-body p{color:var(--muted);margin-bottom:18px;font-size:1.04rem}
+  .about-body p b{color:var(--ink);font-weight:600}
+
+  /* STACK */
+  .stack-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .stack-col{border:1px solid var(--line);border-radius:var(--r);padding:24px;background:var(--bg-elev)}
+  .stack-col h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;display:flex;align-items:center;gap:9px}
+  .stack-col h3 .mk{color:var(--faint)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:var(--mono);font-size:.76rem;color:var(--muted);border:1px solid var(--line);border-radius:7px;padding:7px 11px;transition:.18s}
+  .chip:hover{color:var(--ink);border-color:var(--line-strong)}
+  .chip.hl{color:var(--cyan);border-color:rgba(91,209,192,.3)}
+
+  /* FOCUS */
+  .focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .focus{border:1px solid var(--line);border-radius:var(--r);padding:26px;background:var(--bg-elev);transition:.25s ease}
+  .focus:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+  .focus .num{font-family:var(--mono);font-size:.72rem;color:var(--amber);letter-spacing:.1em}
+  .focus h3{font-family:var(--display);font-weight:600;font-size:1.16rem;margin:14px 0 10px}
+  .focus p{color:var(--muted);font-size:.92rem;line-height:1.6}
+
+  /* PROJECTS */
+  .projects{display:flex;flex-direction:column;gap:26px}
+  .proj{display:grid;grid-template-columns:1fr 1.15fr;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--bg-elev);transition:.25s ease}
+  .proj:nth-child(even){grid-template-columns:1.15fr 1fr}
+  .proj:nth-child(even) .proj-media{order:2}
+  .proj:hover{border-color:var(--line-strong)}
+  .proj-media{position:relative;min-height:280px;background:linear-gradient(135deg,#172033,#0d1320)}
+  .proj-media::after{content:attr(data-img);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.04em;text-align:center;padding:20px}
+  .proj-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .proj-body{padding:34px;display:flex;flex-direction:column;justify-content:center}
+  .proj .idx{font-family:var(--mono);font-size:.74rem;color:var(--amber);letter-spacing:.08em;margin-bottom:12px}
+  .proj h3{font-family:var(--display);font-weight:600;font-size:1.32rem;letter-spacing:-.01em;margin-bottom:12px;line-height:1.25}
+  .proj p{color:var(--muted);font-size:.96rem}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tag{font-family:var(--mono);font-size:.67rem;letter-spacing:.03em;color:var(--cyan);border:1px solid var(--line);border-radius:6px;padding:5px 9px}
+
+  /* EXPERIENCE */
+  .xp-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:46px;align-items:start}
+  .timeline{position:relative;padding-left:26px}
+  .timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line-strong)}
+  .tl-item{position:relative;padding-bottom:26px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-24px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:1px solid var(--amber)}
+  .tl-item.edu::before{border-color:var(--cyan)}
+  .tl-date{font-family:var(--mono);font-size:.7rem;color:var(--faint);letter-spacing:.04em;margin-bottom:5px;display:flex;gap:10px;align-items:center}
+  .tl-type{font-size:.58rem;letter-spacing:.1em;padding:2px 6px;border-radius:4px;border:1px solid var(--line-strong);color:var(--muted)}
+  .tl-item h4{font-family:var(--display);font-weight:600;font-size:1.04rem;margin-bottom:2px}
+  .tl-item .org{color:var(--muted);font-size:.88rem}
+  .awards{border:1px solid var(--line);border-radius:var(--r);padding:24px;background:var(--bg-elev);position:sticky;top:100px}
+  .awards h3{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
+  .award{display:flex;gap:13px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+  .award:last-child{border-bottom:none;padding-bottom:0}
+  .award .star{color:var(--amber);flex:none;margin-top:2px}
+  .award .star svg{width:16px;height:16px}
+  .award h5{font-family:var(--display);font-weight:600;font-size:.94rem;margin-bottom:2px}
+  .award span{color:var(--faint);font-family:var(--mono);font-size:.72rem}
+
+  /* CONTACT */
+  .contact{text-align:center;padding:108px 0}
+  .contact h2{font-family:var(--display);font-weight:600;font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.02em;margin:18px 0 18px}
+  .contact p{color:var(--muted);max-width:54ch;margin:0 auto 36px;font-size:1.06rem}
+
+  footer{border-top:1px solid var(--line);padding:38px 0}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .foot .copy{font-family:var(--mono);font-size:.74rem;color:var(--faint);letter-spacing:.03em}
+  .foot .fsoc{display:flex;gap:18px}
+  .foot .fsoc a{font-family:var(--mono);font-size:.74rem;color:var(--muted);transition:.2s}
+  .foot .fsoc a:hover{color:var(--amber)}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr;gap:40px}.panel{max-width:440px}
+    .about-grid{grid-template-columns:1fr;gap:34px}.photo-card{position:static}
+    .stack-grid,.focus-grid{grid-template-columns:1fr}
+    .proj,.proj:nth-child(even){grid-template-columns:1fr}
+    .proj:nth-child(even) .proj-media{order:0}
+    .xp-grid{grid-template-columns:1fr;gap:34px}.awards{position:static}
+    .navlinks{display:none}
+    .navlinks.open{display:flex;position:absolute;top:70px;left:0;right:0;flex-direction:column;gap:0;background:rgba(10,13,21,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:8px 26px 20px}
+    .navlinks.open a{padding:14px 0;border-bottom:1px solid var(--line)}
+    .menu-btn{display:block}
+  }
+  @media (max-width:600px){.skill-grid{grid-template-columns:1fr}.proj-body{padding:26px}.sat-row{font-size:.68rem}}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="brand">
+        <span class="sigil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(-25 12 12)"/><circle cx="12" cy="12" r="2.4" fill="currentColor" stroke="none"/></svg></span>
+        <span>A. Dudiel Herrera</span>
+      </a>
+      <div class="nav-right">
+        <div class="navlinks" id="navlinks">
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#stack" data-i18n="nav.stack">Stack</a>
+          <a href="#focus" data-i18n="nav.focus">Research</a>
+          <a href="#projects" data-i18n="nav.work">Projects</a>
+          <a href="#experience" data-i18n="nav.experience">Experience</a>
+          <a href="#contact" data-i18n="nav.contact">Contact</a>
+        </div>
+        <div class="langs">
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+          <button class="lang-btn" data-lang="zh" onclick="setLang('zh')">中文</button>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">≡</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="hello" data-i18n="hero.hello">// Systems engineer working across space, software &amp; AI</p>
+        <h1>Angel <span class="accent">Dudiel</span><br>Herrera</h1>
+        <p class="role" data-i18n="hero.role">Systems Engineer · Space Technology &amp; AI Researcher</p>
+        <p class="lede" data-i18n="hero.lede">I operate Earth-observation satellites at <b>ABAE</b> and build the software, data systems, and machine-learning tools behind them. My work spans <b>satellite operations</b>, <b>AI</b>, and <b>optimization</b> — currently pursuing a master's in Micro-satellite Technology at Beihang University.</p>
+        <div class="cta-row">
+          <a href="#projects" class="btn primary"><span data-i18n="hero.cta_work">View projects</span> <span aria-hidden="true">→</span></a>
+          <a href="#REPLACE_RESUME_URL" class="btn ghost" data-i18n="hero.cta_resume">Résumé</a>
+        </div>
+        <div class="socials">
+          <a href="https://github.com/REPLACE_GITHUB" aria-label="GitHub" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.7.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.2c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg></a>
+          <a href="https://linkedin.com/in/angel-dudielherrera" aria-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 3H3.6C3 3 2.5 3.5 2.5 4.1v15.8c0 .6.5 1.1 1.1 1.1h16.8c.6 0 1.1-.5 1.1-1.1V4.1c0-.6-.5-1.1-1.1-1.1zM8.3 18.3H5.6V9.6h2.7v8.7zM6.9 8.4a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2zm11.4 9.9h-2.7v-4.2c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2v4.3H9.9V9.6h2.6v1.2h.1c.4-.7 1.3-1.4 2.6-1.4 2.7 0 3.2 1.8 3.2 4.1v4.8z"/></svg></a>
+          <a href="mailto:dudiel91@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="panel reveal">
+        <div class="panel-head">
+          <span class="ttl" data-i18n="panel.title">Platforms Operated</span>
+          <span class="live"><span class="dot"></span>ABAE</span>
+        </div>
+        <div class="orbit-vis">
+          <svg viewBox="0 0 240 170" fill="none">
+            <ellipse cx="120" cy="85" rx="105" ry="40" stroke="var(--line-strong)" stroke-width="1"/>
+            <ellipse cx="120" cy="85" rx="72" ry="26" stroke="var(--line)" stroke-width="1"/>
+            <circle cx="120" cy="85" r="18" fill="url(#earth)"/>
+            <circle cx="120" cy="85" r="18" stroke="var(--cyan)" stroke-width="1" opacity=".5"/>
+            <g class="sat-path" style="transform-origin:120px 85px;transform-box:view-box">
+              <g transform="translate(225,85)"><circle r="3.4" fill="var(--amber)"/><circle r="6.5" fill="none" stroke="var(--amber)" stroke-width="1" opacity=".4"/></g>
+            </g>
+            <defs><radialGradient id="earth" cx="35%" cy="30%"><stop offset="0%" stop-color="#1d3a52"/><stop offset="100%" stop-color="#0c1722"/></radialGradient></defs>
+          </svg>
+        </div>
+        <div class="sat-list">
+          <div class="sat-row"><span class="name">VRSS-1</span><span class="sub" data-i18n="sat.miranda">Satélite Miranda · remote sensing</span><span class="badge tag-eo">EO</span></div>
+          <div class="sat-row"><span class="name">VRSS-2</span><span class="sub" data-i18n="sat.sucre">Satélite Sucre · remote sensing</span><span class="badge tag-eo">EO</span></div>
+          <div class="sat-row"><span class="name">VENESAT-1</span><span class="sub" data-i18n="sat.bolivar">Satélite Bolívar · monitored</span><span class="badge tag-com">COM</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="about.eyebrow">01 — About</span>
+      <h2 data-i18n="about.h2">Engineer at the intersection of space, code, and AI.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="photo-card reveal">
+        <div class="avatar"><img src="images/me.jpg" alt="Angel Dudiel Herrera" onerror="this.remove()"><span class="mono-init">A</span></div>
+        <div class="id-block">
+          <div class="id-row"><span class="k" data-i18n="id.role">ROLE</span><span class="v" data-i18n="id.role_v">Systems Engineer</span></div>
+          <div class="id-row"><span class="k" data-i18n="id.org">ORG</span><span class="v">ABAE</span></div>
+          <div class="id-row"><span class="k" data-i18n="id.study">STUDY</span><span class="v" data-i18n="id.study_v">Beihang University</span></div>
+          <div class="id-row"><span class="k" data-i18n="id.base">BASE</span><span class="v" data-i18n="id.base_v">Hangzhou, CN</span></div>
+        </div>
+      </div>
+      <div class="about-body reveal">
+        <p data-i18n="about.p1">I'm a systems engineer and space-technology researcher. At <b>ABAE</b> — Venezuela's space agency — I operate the VRSS-1 and VRSS-2 Earth-observation satellites and build the software and data systems that keep their operations running.</p>
+        <p data-i18n="about.p2">My second language is code. I work in <b>Python, C++, and MATLAB</b>, increasingly at the intersection of aerospace and AI — deep learning, computer vision, LLMs and AI agents, and optimization. I'm comfortable from telemetry pipelines to PyTorch models.</p>
+        <p data-i18n="about.p3">I'm completing a master's in <b>Micro-satellite Technology</b> at Beihang University (RCSSTEAP fellowship), after a Systems Engineering degree from UNEFA, where I graduated with honors and earned national Novel Researcher recognition.</p>
+        <p data-i18n="about.p4">Outside work I'm into emerging tech, cycling, and Dungeons &amp; Dragons. I took 2nd place at the 2021 NASA Space Apps Challenge and serve Venezuela's space community through SGAC and SENCAMER.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="stack.eyebrow">02 — Stack</span>
+      <h2 data-i18n="stack.h2">The tools I build with.</h2>
+      <p data-i18n="stack.p">From satellite telemetry to neural networks.</p>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-col reveal">
+        <h3><span class="mk">▹</span><span data-i18n="stack.c1">Languages &amp; Tools</span></h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">C++</span><span class="chip">MATLAB</span><span class="chip">Git</span><span class="chip">SQL</span><span class="chip">LaTeX</span><span class="chip">FreeCAD</span><span class="chip">STK 12</span><span class="chip">Claude Code</span>
+        </div>
+      </div>
+      <div class="stack-col reveal">
+        <h3><span class="mk">▹</span><span data-i18n="stack.c2">AI &amp; Machine Learning</span></h3>
+        <div class="chips">
+          <span class="chip hl">PyTorch</span><span class="chip hl">TensorFlow</span><span class="chip hl">OpenCV</span><span class="chip hl" data-i18n="sk.dl">Deep Learning</span><span class="chip hl" data-i18n="sk.cv">Computer Vision</span><span class="chip hl">LLMs</span><span class="chip hl" data-i18n="sk.agents">AI Agents</span><span class="chip hl" data-i18n="sk.prompt">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="stack-col reveal">
+        <h3><span class="mk">▹</span><span data-i18n="stack.c3">Space &amp; Engineering</span></h3>
+        <div class="chips">
+          <span class="chip" data-i18n="sk.satops">Satellite Operations</span><span class="chip" data-i18n="sk.rs">Remote Sensing</span><span class="chip" data-i18n="sk.mission">Mission Design</span><span class="chip" data-i18n="sk.topo">Topology Optimization</span><span class="chip" data-i18n="sk.se">Systems Engineering</span><span class="chip" data-i18n="sk.orbit">Orbit Determination</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOCUS -->
+<section id="focus">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="focus.eyebrow">03 — Research</span>
+      <h2 data-i18n="focus.h2">Three tracks I work across.</h2>
+      <p data-i18n="focus.p">Unified by one question: how can software, AI, and optimization make space and autonomous systems more capable?</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus reveal"><span class="num">// 01</span><h3 data-i18n="focus.t1">Satellite Operations &amp; Space Tech</h3><p data-i18n="focus.d1">Operating Earth-observation spacecraft and researching micro-satellite technology, mission design, and the ground systems behind them.</p></div>
+      <div class="focus reveal"><span class="num">// 02</span><h3 data-i18n="focus.t2">AI &amp; Machine Learning</h3><p data-i18n="focus.d2">Deep learning, computer vision, and LLM-based agents applied to aerospace data, automation, and engineering workflows.</p></div>
+      <div class="focus reveal"><span class="num">// 03</span><h3 data-i18n="focus.t3">Optimization &amp; Simulation</h3><p data-i18n="focus.d3">AI-driven topology optimization, constellation design, and large-scale simulation with STK and Python data processing.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="proj.eyebrow">04 — Selected Work</span>
+      <h2 data-i18n="proj.h2">Projects.</h2>
+      <p data-i18n="proj.p">Research and engineering across mission concepts, software systems, and simulation.</p>
+    </div>
+    <div class="projects">
+
+      <div class="proj reveal">
+        <div class="proj-media" data-img="images/frozen-odyssey.jpg"><img src="images/frozen-odyssey.jpg" alt="Frozen Odyssey" loading="lazy" onerror="this.remove()"></div>
+        <div class="proj-body">
+          <div class="idx">P/01 · Womanium Astrobiology</div>
+          <h3 data-i18n="p1.title">Frozen Odyssey — Astrobiology Mission for Enceladus</h3>
+          <p data-i18n="p1.desc">A conceptual mission architecture to search for biosignatures in Enceladus's subsurface ocean, built around 'the Diver' — an unmanned vehicle that uses the Venturi effect to navigate the plumes with ejected liquid as propulsion. Integrates orbiter, lander, rover, and diver to detect organic compounds and characterize the ejected material.</p>
+          <div class="tags"><span class="tag">Astrobiology</span><span class="tag">Mission Design</span><span class="tag">Enceladus</span><span class="tag">Venturi Effect</span><span class="tag">Biosignatures</span></div>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-media" data-img="images/soms.jpg"><img src="images/soms.jpg" alt="SOMS" loading="lazy" onerror="this.remove()"></div>
+        <div class="proj-body">
+          <div class="idx">P/02 · ABAE</div>
+          <h3 data-i18n="p2.title">SOMS — Space Operations Management System</h3>
+          <p data-i18n="p2.desc">A space operations management system designed at ABAE to centralize, visualize, and manage operational data from the VRSS platform, replacing fragmented Excel workflows. Automates report generation, optimizes information retrieval, and delivers a dashboard for telemetry, orbital elements, and tracking — supporting decisions in the satellite control center.</p>
+          <div class="tags"><span class="tag">Systems Engineering</span><span class="tag">Information System</span><span class="tag">Data Visualization</span><span class="tag">VRSS</span></div>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-media" data-img="images/constellation.jpg"><img src="images/constellation.jpg" alt="Constellation monitoring" loading="lazy" onerror="this.remove()"></div>
+        <div class="proj-body">
+          <div class="idx">P/03 · Beihang University</div>
+          <h3 data-i18n="p3.title">Constellation-Based Space Monitoring</h3>
+          <p data-i18n="p3.desc">A study evaluating and optimizing a LEO satellite constellation for space-based monitoring of resident space objects, using STK simulations and Python. Established performance baselines across 400–550 km altitudes and optimized sensor azimuth–elevation orientation via a parallelized multi-phase grid search — achieving a 73.5% improvement in total visibility against a 6,867-satellite Starlink target set.</p>
+          <div class="tags"><span class="tag">Space Situational Awareness</span><span class="tag">Constellation Design</span><span class="tag">STK</span><span class="tag">Optimization</span><span class="tag">Python</span></div>
+        </div>
+      </div>
+
+      <div class="proj reveal">
+        <div class="proj-media" data-img="images/cansat.jpg"><img src="images/cansat.jpg" alt="CANSAT dashboard" loading="lazy" onerror="this.remove()"></div>
+        <div class="proj-body">
+          <div class="idx">P/04 · CANSAT</div>
+          <h3 data-i18n="p4.title">CANSAT Mission &amp; Telemetry Dashboard</h3>
+          <p data-i18n="p4.desc">An end-to-end CANSAT project covering mission design and a Python-based dashboard for real-time telemetry monitoring. Defined the mission concept and operational requirements, then built a visualization interface to track the satellite's telemetry during flight and support post-mission analysis.</p>
+          <div class="tags"><span class="tag">CANSAT</span><span class="tag">Mission Design</span><span class="tag">Telemetry</span><span class="tag">Python</span><span class="tag">Dashboard</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="xp.eyebrow">05 — Experience</span>
+      <h2 data-i18n="xp.h2">Roles, study, and service.</h2>
+    </div>
+    <div class="xp-grid">
+      <div class="timeline reveal">
+        <div class="tl-item edu"><div class="tl-date">Sep 2024 – Jun 2026 <span class="tl-type" data-i18n="type.edu">EDU</span></div><h4 data-i18n="xp.r1">M.Sc. Micro-Satellite Technology</h4><div class="org">Beihang University · RCSSTEAP Fellowship</div></div>
+        <div class="tl-item"><div class="tl-date">Jan 2020 – Aug 2024 <span class="tl-type" data-i18n="type.work">WORK</span></div><h4 data-i18n="xp.r2">Researcher</h4><div class="org">ABAE · Aerospace &amp; AI domains</div></div>
+        <div class="tl-item"><div class="tl-date">Jan 2020 – Aug 2024 <span class="tl-type" data-i18n="type.work">WORK</span></div><h4 data-i18n="xp.r3">Satellite Operations Engineer</h4><div class="org">ABAE · VRSS-1 &amp; VRSS-2</div></div>
+        <div class="tl-item"><div class="tl-date">Apr 2019 – Dec 2019 <span class="tl-type" data-i18n="type.work">WORK</span></div><h4 data-i18n="xp.r4">Monitoring Technician — VENESAT-1</h4><div class="org">ABAE</div></div>
+        <div class="tl-item"><div class="tl-date">Nov 2022 – Apr 2025 <span class="tl-type" data-i18n="type.svc">SERVICE</span></div><h4 data-i18n="xp.r5">National Point of Contact (Venezuela)</h4><div class="org">SGAC</div></div>
+        <div class="tl-item"><div class="tl-date">Aug 2022 – Present <span class="tl-type" data-i18n="type.svc">SERVICE</span></div><h4 data-i18n="xp.r6">Member — CT54 Aerospace Standardization</h4><div class="org">SENCAMER</div></div>
+        <div class="tl-item edu"><div class="tl-date">Sep 2014 – Jun 2019 <span class="tl-type" data-i18n="type.edu">EDU</span></div><h4 data-i18n="xp.r7">B.Sc. Systems Engineering</h4><div class="org" data-i18n="xp.r7org">UNEFA · Graduated with honors</div></div>
+      </div>
+      <div class="awards reveal">
+        <h3 data-i18n="awards.title">Honors</h3>
+        <div class="award"><span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.8.8-5 4.6 1.3 6.7L12 18.9 5.7 22l1.3-6.7-5-4.6 6.8-.8z"/></svg></span><div><h5 data-i18n="aw.1">2nd Place — NASA Space Apps Challenge</h5><span>2021</span></div></div>
+        <div class="award"><span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.8.8-5 4.6 1.3 6.7L12 18.9 5.7 22l1.3-6.7-5-4.6 6.8-.8z"/></svg></span><div><h5 data-i18n="aw.2">Honor to Merit</h5><span>ABAE · 2021</span></div></div>
+        <div class="award"><span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.8.8-5 4.6 1.3 6.7L12 18.9 5.7 22l1.3-6.7-5-4.6 6.8-.8z"/></svg></span><div><h5 data-i18n="aw.3">Novel Researcher</h5><span>UNEFA · 2019</span></div></div>
+        <div class="award"><span class="star"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.8.8-5 4.6 1.3 6.7L12 18.9 5.7 22l1.3-6.7-5-4.6 6.8-.8z"/></svg></span><div><h5 data-i18n="aw.4">Researcher Level A-1</h5><span>UNEFA · 2019</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap reveal">
+    <span class="eyebrow" style="justify-content:center" data-i18n="contact.eyebrow">06 — Contact</span>
+    <h2 data-i18n="contact.h2">Let's build something.</h2>
+    <p data-i18n="contact.p">Open to research collaboration, aerospace and AI opportunities, and conversations about satellites, software, and optimization. My inbox is always open.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a href="mailto:dudiel91@gmail.com" class="btn primary"><span data-i18n="contact.email">Email me</span> <span aria-hidden="true">→</span></a>
+      <a href="https://linkedin.com/in/angel-dudielherrera" class="btn ghost" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <span class="copy">© 2026 Angel Adrian Dudiel Herrera</span>
+      <div class="fsoc">
+        <a href="https://github.com/REPLACE_GITHUB" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/angel-dudielherrera" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:dudiel91@gmail.com">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const T = {
+    en:{
+      "meta.title":"Angel Dudiel Herrera — Systems Engineer · Space-Tech & AI Researcher",
+      "nav.about":"About","nav.stack":"Stack","nav.focus":"Research","nav.work":"Projects","nav.experience":"Experience","nav.contact":"Contact",
+      "hero.hello":"// Systems engineer working across space, software & AI",
+      "hero.role":"Systems Engineer · Space Technology & AI Researcher",
+      "hero.lede":"I operate Earth-observation satellites at <b>ABAE</b> and build the software, data systems, and machine-learning tools behind them. My work spans <b>satellite operations</b>, <b>AI</b>, and <b>optimization</b> — currently pursuing a master's in Micro-satellite Technology at Beihang University.",
+      "hero.cta_work":"View projects","hero.cta_resume":"Résumé",
+      "panel.title":"Platforms Operated",
+      "sat.miranda":"Satélite Miranda · remote sensing","sat.sucre":"Satélite Sucre · remote sensing","sat.bolivar":"Satélite Bolívar · monitored",
+      "about.eyebrow":"01 — About","about.h2":"Engineer at the intersection of space, code, and AI.",
+      "id.role":"ROLE","id.role_v":"Systems Engineer","id.org":"ORG","id.study":"STUDY","id.study_v":"Beihang University","id.base":"BASE","id.base_v":"Hangzhou, CN",
+      "about.p1":"I'm a systems engineer and space-technology researcher. At <b>ABAE</b> — Venezuela's space agency — I operate the VRSS-1 and VRSS-2 Earth-observation satellites and build the software and data systems that keep their operations running.",
+      "about.p2":"My second language is code. I work in <b>Python, C++, and MATLAB</b>, increasingly at the intersection of aerospace and AI — deep learning, computer vision, LLMs and AI agents, and optimization. I'm comfortable from telemetry pipelines to PyTorch models.",
+      "about.p3":"I'm completing a master's in <b>Micro-satellite Technology</b> at Beihang University (RCSSTEAP fellowship), after a Systems Engineering degree from UNEFA, where I graduated with honors and earned national Novel Researcher recognition.",
+      "about.p4":"Outside work I'm into emerging tech, cycling, and Dungeons & Dragons. I took 2nd place at the 2021 NASA Space Apps Challenge and serve Venezuela's space community through SGAC and SENCAMER.",
+      "stack.eyebrow":"02 — Stack","stack.h2":"The tools I build with.","stack.p":"From satellite telemetry to neural networks.",
+      "stack.c1":"Languages & Tools","stack.c2":"AI & Machine Learning","stack.c3":"Space & Engineering",
+      "sk.dl":"Deep Learning","sk.cv":"Computer Vision","sk.agents":"AI Agents","sk.prompt":"Prompt Engineering",
+      "sk.satops":"Satellite Operations","sk.rs":"Remote Sensing","sk.mission":"Mission Design","sk.topo":"Topology Optimization","sk.se":"Systems Engineering","sk.orbit":"Orbit Determination",
+      "focus.eyebrow":"03 — Research","focus.h2":"Three tracks I work across.","focus.p":"Unified by one question: how can software, AI, and optimization make space and autonomous systems more capable?",
+      "focus.t1":"Satellite Operations & Space Tech","focus.d1":"Operating Earth-observation spacecraft and researching micro-satellite technology, mission design, and the ground systems behind them.",
+      "focus.t2":"AI & Machine Learning","focus.d2":"Deep learning, computer vision, and LLM-based agents applied to aerospace data, automation, and engineering workflows.",
+      "focus.t3":"Optimization & Simulation","focus.d3":"AI-driven topology optimization, constellation design, and large-scale simulation with STK and Python data processing.",
+      "proj.eyebrow":"04 — Selected Work","proj.h2":"Projects.","proj.p":"Research and engineering across mission concepts, software systems, and simulation.",
+      "p1.title":"Frozen Odyssey — Astrobiology Mission for Enceladus",
+      "p1.desc":"A conceptual mission architecture to search for biosignatures in Enceladus's subsurface ocean, built around 'the Diver' — an unmanned vehicle that uses the Venturi effect to navigate the plumes with ejected liquid as propulsion. Integrates orbiter, lander, rover, and diver to detect organic compounds and characterize the ejected material.",
+      "p2.title":"SOMS — Space Operations Management System",
+      "p2.desc":"A space operations management system designed at ABAE to centralize, visualize, and manage operational data from the VRSS platform, replacing fragmented Excel workflows. Automates report generation, optimizes information retrieval, and delivers a dashboard for telemetry, orbital elements, and tracking — supporting decisions in the satellite control center.",
+      "p3.title":"Constellation-Based Space Monitoring",
+      "p3.desc":"A study evaluating and optimizing a LEO satellite constellation for space-based monitoring of resident space objects, using STK simulations and Python. Established performance baselines across 400–550 km altitudes and optimized sensor azimuth–elevation orientation via a parallelized multi-phase grid search — achieving a 73.5% improvement in total visibility against a 6,867-satellite Starlink target set.",
+      "p4.title":"CANSAT Mission & Telemetry Dashboard",
+      "p4.desc":"An end-to-end CANSAT project covering mission design and a Python-based dashboard for real-time telemetry monitoring. Defined the mission concept and operational requirements, then built a visualization interface to track the satellite's telemetry during flight and support post-mission analysis.",
+      "xp.eyebrow":"05 — Experience","xp.h2":"Roles, study, and service.",
+      "type.edu":"EDU","type.work":"WORK","type.svc":"SERVICE",
+      "xp.r1":"M.Sc. Micro-Satellite Technology","xp.r2":"Researcher","xp.r3":"Satellite Operations Engineer","xp.r4":"Monitoring Technician — VENESAT-1","xp.r5":"National Point of Contact (Venezuela)","xp.r6":"Member — CT54 Aerospace Standardization","xp.r7":"B.Sc. Systems Engineering","xp.r7org":"UNEFA · Graduated with honors",
+      "awards.title":"Honors","aw.1":"2nd Place — NASA Space Apps Challenge","aw.2":"Honor to Merit","aw.3":"Novel Researcher","aw.4":"Researcher Level A-1",
+      "contact.eyebrow":"06 — Contact","contact.h2":"Let's build something.","contact.p":"Open to research collaboration, aerospace and AI opportunities, and conversations about satellites, software, and optimization. My inbox is always open.","contact.email":"Email me"
+    },
+    es:{
+      "meta.title":"Angel Dudiel Herrera — Ingeniero de Sistemas · Investigador en Tecnología Espacial e IA",
+      "nav.about":"Perfil","nav.stack":"Stack","nav.focus":"Investigación","nav.work":"Proyectos","nav.experience":"Experiencia","nav.contact":"Contacto",
+      "hero.hello":"// Ingeniero de sistemas entre el espacio, el software y la IA",
+      "hero.role":"Ingeniero de Sistemas · Investigador en Tecnología Espacial e IA",
+      "hero.lede":"Opero satélites de observación terrestre en <b>ABAE</b> y desarrollo el software, los sistemas de datos y las herramientas de aprendizaje automático detrás de ellos. Mi trabajo abarca <b>operaciones satelitales</b>, <b>IA</b> y <b>optimización</b> — actualmente curso una maestría en Tecnología de Microsatélites en la Universidad de Beihang.",
+      "hero.cta_work":"Ver proyectos","hero.cta_resume":"Currículum",
+      "panel.title":"Plataformas operadas",
+      "sat.miranda":"Satélite Miranda · sensoramiento remoto","sat.sucre":"Satélite Sucre · sensoramiento remoto","sat.bolivar":"Satélite Bolívar · monitoreado",
+      "about.eyebrow":"01 — Perfil","about.h2":"Ingeniero en la intersección del espacio, el código y la IA.",
+      "id.role":"ROL","id.role_v":"Ing. de Sistemas","id.org":"ORG","id.study":"ESTUDIOS","id.study_v":"Universidad de Beihang","id.base":"BASE","id.base_v":"Hangzhou, China",
+      "about.p1":"Soy ingeniero de sistemas e investigador en tecnología espacial. En <b>ABAE</b> —la agencia espacial de Venezuela— opero los satélites de observación terrestre VRSS-1 y VRSS-2 y desarrollo el software y los sistemas de datos que sostienen sus operaciones.",
+      "about.p2":"Mi segundo idioma es el código. Trabajo en <b>Python, C++ y MATLAB</b>, cada vez más en la intersección entre la industria aeroespacial y la IA: aprendizaje profundo, visión por computadora, LLMs y agentes de IA, y optimización. Me muevo con soltura desde pipelines de telemetría hasta modelos en PyTorch.",
+      "about.p3":"Actualmente curso una maestría en <b>Tecnología de Microsatélites</b> en la Universidad de Beihang (beca RCSSTEAP), tras graduarme en Ingeniería de Sistemas en la UNEFA con honores y el reconocimiento nacional de Investigador Novel.",
+      "about.p4":"Fuera del trabajo me interesan las tecnologías emergentes, el ciclismo y Dungeons & Dragons. Obtuve el 2.º lugar en el NASA Space Apps Challenge 2021 y apoyo a la comunidad espacial venezolana a través del SGAC y SENCAMER.",
+      "stack.eyebrow":"02 — Stack","stack.h2":"Las herramientas con las que construyo.","stack.p":"Desde la telemetría satelital hasta las redes neuronales.",
+      "stack.c1":"Lenguajes y herramientas","stack.c2":"IA y aprendizaje automático","stack.c3":"Espacio e ingeniería",
+      "sk.dl":"Aprendizaje profundo","sk.cv":"Visión por computadora","sk.agents":"Agentes de IA","sk.prompt":"Ingeniería de prompts",
+      "sk.satops":"Operaciones satelitales","sk.rs":"Sensoramiento remoto","sk.mission":"Diseño de misiones","sk.topo":"Optimización topológica","sk.se":"Ingeniería de sistemas","sk.orbit":"Determinación orbital",
+      "focus.eyebrow":"03 — Investigación","focus.h2":"Tres líneas en las que trabajo.","focus.p":"Unidas por una pregunta: ¿cómo pueden el software, la IA y la optimización hacer más capaces los sistemas espaciales y autónomos?",
+      "focus.t1":"Operaciones satelitales y tecnología espacial","focus.d1":"Operación de satélites de observación terrestre e investigación en tecnología de microsatélites, diseño de misiones y los sistemas de tierra que los sostienen.",
+      "focus.t2":"IA y aprendizaje automático","focus.d2":"Aprendizaje profundo, visión por computadora y agentes basados en LLM aplicados a datos aeroespaciales, automatización y flujos de ingeniería.",
+      "focus.t3":"Optimización y simulación","focus.d3":"Optimización topológica con IA, diseño de constelaciones y simulación a gran escala con STK y procesamiento de datos en Python.",
+      "proj.eyebrow":"04 — Trabajo seleccionado","proj.h2":"Proyectos.","proj.p":"Investigación e ingeniería en conceptos de misión, sistemas de software y simulación.",
+      "p1.title":"Frozen Odyssey — Misión de astrobiología para Encélado",
+      "p1.desc":"Una arquitectura conceptual de misión para buscar biofirmas en el océano subsuperficial de Encélado, centrada en 'the Diver': un vehículo no tripulado que usa el efecto Venturi para navegar los géiseres empleando el líquido expulsado como propulsión. Integra orbitador, módulo de aterrizaje, rover y buzo para detectar compuestos orgánicos y caracterizar el material expulsado.",
+      "p2.title":"SOMS — Sistema de Gestión de Operaciones Espaciales",
+      "p2.desc":"Un sistema de gestión de operaciones espaciales diseñado en ABAE para centralizar, visualizar y administrar los datos operativos de la plataforma VRSS, reemplazando flujos de trabajo fragmentados en Excel. Automatiza la generación de reportes, optimiza la recuperación de información y ofrece un tablero de telemetría, elementos orbitales y seguimiento, apoyando las decisiones en el centro de control satelital.",
+      "p3.title":"Monitoreo espacial basado en constelaciones",
+      "p3.desc":"Un estudio para evaluar y optimizar una constelación de satélites LEO destinada al monitoreo espacial de objetos en órbita, mediante simulaciones en STK y Python. Estableció líneas base de desempeño entre 400 y 550 km de altitud y optimizó la orientación azimut–elevación de los sensores con una búsqueda en malla multifase y paralelizada, logrando una mejora del 73,5 % en visibilidad total frente a un conjunto objetivo Starlink de 6.867 satélites.",
+      "p4.title":"Misión CANSAT y tablero de telemetría",
+      "p4.desc":"Un proyecto CANSAT integral que abarca el diseño de la misión y un tablero en Python para el monitoreo de telemetría en tiempo real. Definió el concepto de misión y los requisitos operativos, y luego implementó una interfaz de visualización para seguir la telemetría del satélite durante el vuelo y apoyar el análisis posterior.",
+      "xp.eyebrow":"05 — Experiencia","xp.h2":"Cargos, estudios y servicio.",
+      "type.edu":"EDU","type.work":"TRABAJO","type.svc":"SERVICIO",
+      "xp.r1":"Maestría en Tecnología de Microsatélites","xp.r2":"Investigador","xp.r3":"Ingeniero de Operaciones Satelitales","xp.r4":"Técnico de Monitoreo — VENESAT-1","xp.r5":"Punto de Contacto Nacional (Venezuela)","xp.r6":"Miembro — Comité CT54 de Normalización Aeroespacial","xp.r7":"Ingeniería de Sistemas","xp.r7org":"UNEFA · Graduado con honores",
+      "awards.title":"Reconocimientos","aw.1":"2.º lugar — NASA Space Apps Challenge","aw.2":"Honor al Mérito","aw.3":"Investigador Novel","aw.4":"Investigador Nivel A-1",
+      "contact.eyebrow":"06 — Contacto","contact.h2":"Construyamos algo.","contact.p":"Abierto a colaboración en investigación, oportunidades en el sector aeroespacial e IA, y conversaciones sobre satélites, software y optimización. Mi bandeja siempre está abierta.","contact.email":"Escríbeme"
+    },
+    zh:{
+      "meta.title":"Angel Dudiel Herrera — 系统工程师 · 航天技术与人工智能研究员",
+      "nav.about":"关于","nav.stack":"技术栈","nav.focus":"研究方向","nav.work":"项目","nav.experience":"经历","nav.contact":"联系",
+      "hero.hello":"// 系统工程师 — 跨越航天、软件与人工智能",
+      "hero.role":"系统工程师 · 航天技术与人工智能研究员",
+      "hero.lede":"我在 <b>ABAE</b>（玻利瓦尔航天局）运行对地观测卫星，并开发其背后的软件、数据系统与机器学习工具。我的工作横跨<b>卫星运行</b>、<b>人工智能</b>与<b>优化算法</b> —— 目前在北京航空航天大学攻读微小卫星技术硕士学位。",
+      "hero.cta_work":"查看项目","hero.cta_resume":"简历",
+      "panel.title":"运行的卫星平台",
+      "sat.miranda":"米兰达卫星 · 遥感","sat.sucre":"苏克雷卫星 · 遥感","sat.bolivar":"玻利瓦尔卫星 · 监测",
+      "about.eyebrow":"01 — 关于","about.h2":"立于航天、代码与人工智能交汇点的工程师。",
+      "id.role":"职位","id.role_v":"系统工程师","id.org":"机构","id.study":"在读","id.study_v":"北京航空航天大学","id.base":"常驻","id.base_v":"中国杭州",
+      "about.p1":"我是一名系统工程师，也是航天技术研究员。在<b>委内瑞拉航天局（ABAE）</b>，我负责运行 VRSS-1 和 VRSS-2 对地观测卫星，并开发支撑其日常运行的软件与数据系统。",
+      "about.p2":"代码是我的第二语言。我使用 <b>Python、C++ 和 MATLAB</b>，并越来越多地工作在航天与人工智能的交汇处 —— 深度学习、计算机视觉、大语言模型与 AI 智能体，以及优化算法。从遥测数据管线到 PyTorch 模型，我都能从容应对。",
+      "about.p3":"我目前在北京航空航天大学攻读<b>微小卫星技术</b>硕士学位（RCSSTEAP 奖学金项目）。此前，我以优异成绩毕业于委内瑞拉 UNEFA 大学系统工程专业，并获得国家级“新锐研究者”称号。",
+      "about.p4":"工作之余，我热衷于前沿科技、骑行和龙与地下城（D&D）。我在 2021 年 NASA Space Apps 全球挑战赛中获得第二名，并通过 SGAC 和 SENCAMER 服务于委内瑞拉的航天社区。",
+      "stack.eyebrow":"02 — 技术栈","stack.h2":"我所使用的工具。","stack.p":"从卫星遥测到神经网络。",
+      "stack.c1":"编程语言与工具","stack.c2":"人工智能与机器学习","stack.c3":"航天与工程",
+      "sk.dl":"深度学习","sk.cv":"计算机视觉","sk.agents":"AI 智能体","sk.prompt":"提示词工程",
+      "sk.satops":"卫星运行","sk.rs":"遥感","sk.mission":"任务设计","sk.topo":"拓扑优化","sk.se":"系统工程","sk.orbit":"轨道确定",
+      "focus.eyebrow":"03 — 研究方向","focus.h2":"我专注的三个方向。","focus.p":"它们由同一个问题串联：软件、人工智能与优化如何让航天与自主系统更加强大？",
+      "focus.t1":"卫星运行与航天技术","focus.d1":"运行对地观测航天器，并研究微小卫星技术、任务设计及其背后的地面系统。",
+      "focus.t2":"人工智能与机器学习","focus.d2":"将深度学习、计算机视觉和基于大语言模型的智能体应用于航天数据、自动化与工程流程。",
+      "focus.t3":"优化与仿真","focus.d3":"由人工智能驱动的拓扑优化、星座设计，以及基于 STK 和 Python 数据处理的大规模仿真。",
+      "proj.eyebrow":"04 — 精选作品","proj.h2":"项目。","proj.p":"涵盖任务概念、软件系统与仿真的研究与工程实践。",
+      "p1.title":"Frozen Odyssey —— 土卫二天体生物探测任务",
+      "p1.desc":"一套概念性任务架构，旨在土卫二（恩克拉多斯）的地下海洋中搜寻生物特征，核心是名为“潜行者（the Diver）”的无人航行器 —— 它利用文丘里效应，以喷射液体为推进力穿行于羽流之中。系统整合轨道器、着陆器、巡视器与潜行器，用于探测有机化合物并表征喷出物质。",
+      "p2.title":"SOMS —— 航天运行管理系统",
+      "p2.desc":"在 ABAE 设计的航天运行管理系统，用于集中管理、可视化并处理 VRSS 平台的运行数据，取代分散的 Excel 工作流程。系统自动生成报告、优化信息检索，并提供遥测、轨道根数与跟踪活动的仪表盘，为卫星控制中心的决策提供支持。",
+      "p3.title":"基于星座的空间监视",
+      "p3.desc":"一项针对低轨（LEO）卫星星座的评估与优化研究，用于对在轨空间目标进行天基监视，采用 STK 仿真与 Python 数据处理。研究在 400–550 公里高度范围内建立了性能基线，并通过并行化的多阶段网格搜索优化了传感器的方位–俯仰指向，相对于由 6,867 颗星链卫星组成的目标集，总可见性提升了 73.5%。",
+      "p4.title":"CANSAT 任务与遥测仪表盘",
+      "p4.desc":"一个端到端的 CANSAT 项目，涵盖任务设计与基于 Python 的实时遥测监控仪表盘。项目确定了任务概念与运行需求，随后实现了可视化界面，用于在飞行过程中跟踪并显示卫星遥测数据，支持飞行后的数据分析。",
+      "xp.eyebrow":"05 — 经历","xp.h2":"职业、学习与社区服务。",
+      "type.edu":"教育","type.work":"工作","type.svc":"服务",
+      "xp.r1":"微小卫星技术硕士","xp.r2":"研究员","xp.r3":"卫星运行工程师","xp.r4":"监测技术员 —— VENESAT-1","xp.r5":"国家联络人（委内瑞拉）","xp.r6":"委员 —— CT54 航天标准化委员会","xp.r7":"系统工程学士","xp.r7org":"UNEFA · 以优异成绩毕业",
+      "awards.title":"荣誉","aw.1":"NASA Space Apps 挑战赛亚军","aw.2":"荣誉勋章","aw.3":"新锐研究者","aw.4":"A-1 级研究员",
+      "contact.eyebrow":"06 — 联系","contact.h2":"一起做点什么。","contact.p":"欢迎就科研合作、航天与人工智能机会，以及关于卫星、软件与优化的话题与我交流。我的邮箱随时开放。","contact.email":"给我发邮件"
+    }
+  };
+
+  function getLang(){
+    const p = new URLSearchParams(location.search).get('lang');
+    if(p && T[p]) return p;
+    const h = location.hash.replace('#','');
+    if(T[h]) return h;
+    const n = (navigator.language||'en').toLowerCase();
+    if(n.startsWith('zh')) return 'zh';
+    if(n.startsWith('es')) return 'es';
+    return 'en';
+  }
+  function applyLang(lang){
+    document.documentElement.lang = (lang==='zh')?'zh-CN':lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const v = T[lang][el.getAttribute('data-i18n')];
+      if(v!==undefined) el.innerHTML = v;
+    });
+    if(T[lang]['meta.title']) document.title = T[lang]['meta.title'];
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+  }
+  function setLang(lang){
+    if(!T[lang]) return;
+    const url = new URL(location);
+    url.searchParams.set('lang', lang);
+    history.replaceState(null,'',url);
+    applyLang(lang);
+  }
+  applyLang(getLang());
+
+  const header = document.getElementById('header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navlinks = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  }, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
